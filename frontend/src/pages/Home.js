@@ -38,15 +38,33 @@ const Home = () => {
     formData.append('file', file);
 
     try {
-      const response = await axios.post(`${config.apiUrl}/predict`, formData, {
+      console.log(`Sending request to: ${config.apiUrl}/api/predict`);
+      const response = await axios.post(`${config.apiUrl}/api/predict`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
 
+      console.log('Response received:', response.data);
       setResult(response.data);
     } catch (err) {
-      setError(err.response?.data?.detail || 'An error occurred while analyzing the image');
+      console.error('API Error:', err);
+      if (err.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        console.error('Response data:', err.response.data);
+        console.error('Response status:', err.response.status);
+        console.error('Response headers:', err.response.headers);
+        setError(err.response.data?.detail || `Error: ${err.response.status}`);
+      } else if (err.request) {
+        // The request was made but no response was received
+        console.error('Request error, no response received:', err.request);
+        setError('No response received from server. Please try again later.');
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        console.error('Error message:', err.message);
+        setError(`Error: ${err.message}`);
+      }
     } finally {
       setLoading(false);
     }

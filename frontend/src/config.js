@@ -6,8 +6,8 @@ const config = {
   // 3. Fall back to localhost for development
   apiUrl: process.env.REACT_APP_API_URL || 
           (process.env.NODE_ENV === 'production' 
-            ? 'https://deepfake-detection-final.onrender.com/api' 
-            : 'http://localhost:5000/api')
+            ? 'https://deepfake-detection-final.onrender.com' 
+            : 'http://localhost:5000')
 };
 
 export default config; 

@@ -6,6 +6,6 @@
     { "source": "/(.*)", "destination": "/index.html" }
   ],
   "env": {
-    "REACT_APP_API_URL": "https://deepfake-detection-final.onrender.com/api"
+    "REACT_APP_API_URL": "https://deepfake-detection-final.onrender.com"
   }
 } 
