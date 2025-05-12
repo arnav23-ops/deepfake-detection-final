@@ -3,6 +3,7 @@ import { useDropzone } from 'react-dropzone';
 import axios from 'axios';
 import { motion } from 'framer-motion';
 import { ArrowUpTrayIcon, CameraIcon, CheckCircleIcon, XCircleIcon } from '@heroicons/react/24/outline';
+import config from '../config';
 
 const Home = () => {
   const [file, setFile] = useState(null);
@@ -37,7 +38,7 @@ const Home = () => {
     formData.append('file', file);
 
     try {
-      const response = await axios.post('http://localhost:5000/api/predict', formData, {
+      const response = await axios.post(`${config.apiUrl}/predict`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

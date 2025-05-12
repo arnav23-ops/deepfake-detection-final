@@ -21,7 +21,8 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:3000",                     # Local development
-        "https://deepfake-detection-final.vercel.app"
+        "https://deepfake-detection-final.vercel.app",  # Vercel frontend
+        "https://deepfake-detection-final.onrender.com"  # Backend self-reference
     ],
     allow_credentials=True,
     allow_methods=["*"],
